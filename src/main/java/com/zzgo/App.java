@@ -1,11 +1,11 @@
 package com.zzgo;
 
 import com.google.gson.Gson;
+import com.zzgo.bean.Common;
+import com.zzgo.bean.Result;
 import com.zzgo.contants.ConfigConstants;
 import com.zzgo.contants.URLContants;
 import com.zzgo.excel.ExcelApi;
-import com.zzgo.model.Common;
-import com.zzgo.model.Result;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 
@@ -23,7 +23,7 @@ public class App {
     private Logger logger = Logger.getLogger(App.class);
 
     public static void main(String[] args) {
-        new App().test2();
+        new App().ttt();
     }
 
     public void run() {
@@ -50,16 +50,17 @@ public class App {
                 Result result = common.getResult();
                 //addressOrign,stAddress,combine,province,city,county,town,esCombine,poi,esAddress
                 list.add(address);
-                list.add(result.getStAddress());
-                list.add(result.getCombine());
-                list.add(result.getProvince());
-                list.add(result.getCity());
-                list.add(result.getCounty());
-                list.add(result.getTown());
-                list.add(result.getEsCombine());
-                list.add(result.getPoi());
-                list.add(result.getEsAddress());
+                //list.add(result.getStAddress());
+                //list.add(result.getCombine());
+                //list.add(result.getProvince());
+                //list.add(result.getCity());
+                //list.add(result.getCounty());
+                //list.add(result.getTown());
+                //list.add(result.getEsCombine());
+                //list.add(result.getPoi());
+                //list.add(result.getEsAddress());
                 list.add(result.getX() + "," + result.getY());
+
                 for (int l = 0; l < list.size(); l++) {
                     map.put(l, list.get(l));
                 }
@@ -104,15 +105,15 @@ public class App {
                 Result result = common.getResult();
                 //addressOrign,stAddress,combine,province,city,county,town,esCombine,poi,esAddress
                 list.add(address);
-                list.add(result.getStAddress());
-                list.add(result.getCombine());
-                list.add(result.getProvince());
-                list.add(result.getCity());
-                list.add(result.getCounty());
-                list.add(result.getTown());
-                list.add(result.getEsCombine());
-                list.add(result.getPoi());
-                list.add(result.getEsAddress());
+                //list.add(result.getStAddress());
+                //list.add(result.getCombine());
+                //list.add(result.getProvince());
+                //list.add(result.getCity());
+                //list.add(result.getCounty());
+                //list.add(result.getTown());
+                //list.add(result.getEsCombine());
+                //list.add(result.getPoi());
+                //list.add(result.getEsAddress());
                 list.add(result.getX() + "," + result.getY());
                 for (int l = 0; l < list.size(); l++) {
                     map.put(l, list.get(l));
@@ -140,15 +141,15 @@ public class App {
                 Result result = common.getResult();
                 //addressOrign,stAddress,combine,province,city,county,town,esCombine,poi,esAddress
                 list.add(address);
-                list.add(result.getStAddress());
-                list.add(result.getCombine());
-                list.add(result.getProvince());
-                list.add(result.getCity());
-                list.add(result.getCounty());
-                list.add(result.getTown());
-                list.add(result.getEsCombine());
-                list.add(result.getPoi());
-                list.add(result.getEsAddress());
+                //list.add(result.getStAddress());
+                //list.add(result.getCombine());
+                //list.add(result.getProvince());
+                //list.add(result.getCity());
+                //list.add(result.getCounty());
+                //list.add(result.getTown());
+                //list.add(result.getEsCombine());
+                //list.add(result.getPoi());
+                //list.add(result.getEsAddress());
                 list.add(result.getX() + "," + result.getY());
                 for (int l = 0; l < list.size(); l++) {
                     map.put(l, list.get(l));
@@ -163,7 +164,20 @@ public class App {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
+
+    public Object getObject(Map<Integer, String> map, int... args) {
+        for (int i = 0; i < args.length; i++) {
+
+        }
+        return null;
+    }
+
+
+    public void ttt() {
+        //ReadExcelBean readExcelBean = new ReadExcelBean().defaultPara("").addSize(1).addFrom(1).addIsContainTitle
+        //        (false);
+        //System.out.println(readExcelBean.getFrom());
+    }
+
 }

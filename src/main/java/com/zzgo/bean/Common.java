@@ -1,4 +1,4 @@
-package com.zzgo.model;
+package com.zzgo.bean;
 
 
 /**
