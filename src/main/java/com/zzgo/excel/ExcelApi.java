@@ -72,7 +72,7 @@ public class ExcelApi {
                     readInit(excelPath);
                     sheet = wb.getSheet(sheetName);
                     rowNum = sheet.getLastRowNum();
-                    logger.info("rowNum=" + rowNum);
+                    //logger.info("rowNum=" + rowNum);
                 }
             } else {
                 writeInit(excelPath);
@@ -89,9 +89,8 @@ public class ExcelApi {
                 }
                 titleRow.setHeight((short) 400);
             }
-            int r = rowNum + 1;
             for (int i = 0; i < values.size(); i++) {
-                Row row = (Row) sheet.createRow(r++);
+                Row row = (Row) sheet.createRow(rowNum + i + 1);
                 Map<Integer, String> rowValues = values.get(i);
                 for (int j = 0; j < rowValues.size(); j++) {
                     row.createCell(j).setCellValue(rowValues.get(j));

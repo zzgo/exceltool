@@ -25,6 +25,8 @@ public class ConfigConstants {
     public static final String OUT_SHEET_NAME = (String) prop.get("OUT.SHEET.NAME");
 
     public static final Integer ROW_SIZE = Integer.parseInt(prop.get("ROW.SIZE").toString());
+
+    public static final String OPEN_URL = (String) prop.get("OPEN.URL");
 }
 
 

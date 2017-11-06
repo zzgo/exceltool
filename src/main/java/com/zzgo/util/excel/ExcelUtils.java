@@ -27,8 +27,7 @@ public class ExcelUtils {
             int appendSize = write.getAppendSize();
             List<Map<Integer, String>> appendValues = new ArrayList<Map<Integer, String>>();
             int mapSize = values.size();
-            int mod = mapSize % appendSize;
-            for (int i = 0; i <= mapSize - mod; i++) {
+            for (int i = 0; i < mapSize; i++) {
                 appendValues.add(values.get(i));
                 if (i > 0 && i % appendSize == 0) {
                     logger.info("写入条数共计=" + i);
@@ -38,10 +37,7 @@ public class ExcelUtils {
                     appendValues.clear();
                 }
             }
-            for (int i = mod + 1; i < mapSize; i++) {
-                appendValues.add(values.get(i));
-            }
-            logger.info("剩余条数=" + mod);
+            logger.info("写入条数共计=" + mapSize);
             excelApi.write(write.getExcelPath(), write.getSheetName(), write
                             .getTitles(),
                     appendValues, append);
