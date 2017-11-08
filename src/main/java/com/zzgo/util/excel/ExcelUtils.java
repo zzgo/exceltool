@@ -1,6 +1,6 @@
 package com.zzgo.util.excel;
 
-import com.zzgo.bean.WriteExcelBean;
+import com.zzgo.bean.WriteBean;
 import com.zzgo.excel.ExcelApi;
 import org.apache.log4j.Logger;
 
@@ -14,7 +14,7 @@ import java.util.Map;
 public class ExcelUtils {
     private Logger logger = Logger.getLogger(ExcelUtils.class);
 
-    public void write(WriteExcelBean write) {
+    public void write(WriteBean write) {
         try {
             ExcelApi excelApi = new ExcelApi();
             List<Map<Integer, String>> values = write.getValues();

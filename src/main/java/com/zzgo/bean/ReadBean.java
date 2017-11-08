@@ -3,7 +3,7 @@ package com.zzgo.bean;
 /**
  * Created by 9527 on 2017/11/1.
  */
-public class ReadExcelBean {
+public class ReadBean {
     private String excelPath;//路径
     private int sheetIndex;//第几个sheet
     private boolean isContainTitle;//是否包含标题
@@ -11,27 +11,27 @@ public class ReadExcelBean {
     private int from;//从第行开始
     private int[] cols;//指定解析哪一列
 
-    public ReadExcelBean defaultPara(String excelPath) {
+    public ReadBean defaultPara(String excelPath) {
         this.excelPath = excelPath;
         return this;
     }
 
-    public ReadExcelBean addIsContainTitle(boolean isContainTitle) {
+    public ReadBean addIsContainTitle(boolean isContainTitle) {
         this.isContainTitle = isContainTitle;
         return this;
     }
 
-    public ReadExcelBean addSize(int size) {
+    public ReadBean addSize(int size) {
         this.size = size;
         return this;
     }
 
-    public ReadExcelBean addFrom(int from) {
+    public ReadBean addFrom(int from) {
         this.from = from;
         return this;
     }
 
-    public ReadExcelBean addCols(int[] cols) {
+    public ReadBean addCols(int[] cols) {
         this.cols = cols;
         return this;
     }

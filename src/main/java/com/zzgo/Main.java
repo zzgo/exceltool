@@ -23,8 +23,8 @@ public class Main {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
         String time = sdf.format(new Date());
         ExcelUtils excelUtils = new ExcelUtils();
-        ReadExcelBean read = new ReadExcelBean();
-        read.setFrom(82400);
+        ReadBean read = new ReadBean();
+        read.setFrom(120001);
         read.setSheetIndex(0);
         read.setSize(ConfigConstants.ROW_SIZE);
         read.setExcelPath(ConfigConstants.IN_PATH);
@@ -34,7 +34,7 @@ public class Main {
                 .getSheetIndex(), read.isContainTitle(), read.getSize(), read.getFrom
                 (), read.getCols());
         System.out.println(("读取条数=" + mapList.size()));
-        WriteExcelBean write = new WriteExcelBean();
+        WriteBean write = new WriteBean();
         write.setAppend(true);
         write.setAppendSize(ConfigConstants.OUT_SPACING_SIZE);
         write.setExcelPath(ConfigConstants.OUT_PATH.replaceAll("time", time));
@@ -102,7 +102,7 @@ public class Main {
     public static void main2(String[] args) {
         Gson gson = new Gson();
         ExcelUtils excelUtils = new ExcelUtils();
-        ReadExcelBean read = new ReadExcelBean();
+        ReadBean read = new ReadBean();
         read.setSheetIndex(0);
         read.setSize(100);
         read.setExcelPath(ConfigConstants.IN_PATH);
@@ -112,7 +112,7 @@ public class Main {
                 .getSheetIndex(), read.isContainTitle(), read.getSize(), read.getFrom
                 (), read.getCols());
         System.out.println(("读取条数=" + mapList.size()));
-        WriteExcelBean write = new WriteExcelBean();
+        WriteBean write = new WriteBean();
         write.setAppend(true);
         write.setAppendSize(ConfigConstants.OUT_SPACING_SIZE);
         write.setExcelPath(ConfigConstants.OUT_PATH);

@@ -175,7 +175,7 @@ public class App {
 
 
     public void ttt() {
-        //ReadExcelBean readExcelBean = new ReadExcelBean().defaultPara("").addSize(1).addFrom(1).addIsContainTitle
+        //ReadBean readExcelBean = new ReadBean().defaultPara("").addSize(1).addFrom(1).addIsContainTitle
         //        (false);
         //System.out.println(readExcelBean.getFrom());
     }

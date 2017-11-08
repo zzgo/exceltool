@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Created by 9527 on 2017/11/1.
  */
-public class WriteExcelBean {
+public class WriteBean {
     private String excelPath;//文件路径
     private String sheetName;//sheetName
     private String[] titles;//写入标题
@@ -15,7 +15,7 @@ public class WriteExcelBean {
     private int appendSize;//追加条数
 
 
-    public WriteExcelBean() {
+    public WriteBean() {
     }
 
     public int getAppendSize() {

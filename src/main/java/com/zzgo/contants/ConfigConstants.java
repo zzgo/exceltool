@@ -27,6 +27,8 @@ public class ConfigConstants {
     public static final Integer ROW_SIZE = Integer.parseInt(prop.get("ROW.SIZE").toString());
 
     public static final String OPEN_URL = (String) prop.get("OPEN.URL");
+
+    public static final boolean DEBUG = prop.get("DEBUG").equals("true") ? true : false;
 }
 
 
