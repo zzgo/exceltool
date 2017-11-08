@@ -91,22 +91,26 @@ public class ExcelApi {
             }
             for (int i = 0; i < values.size(); i++) {
                 Row row = (Row) sheet.createRow(rowNum + i + 1);
-                Map<Integer, String> rowValues = values.get(i);
-                for (int j = 0; j < rowValues.size(); j++) {
-                    row.createCell(j).setCellValue(rowValues.get(j));
-                }
+            Map<Integer, String> rowValues = values.get(i);
+            for (int j = 0; j < rowValues.size(); j++) {
+                row.createCell(j).setCellValue(rowValues.get(j));
             }
-            //创建文件流
-            OutputStream stream = new FileOutputStream(excelPath);
-            //写入数据
-            wb.write(stream);
-            //关闭文件流
-            stream.close();
-            logger.info("##\t写入完成，用时=" + (System.currentTimeMillis() - startTime) + "ms");
-        } catch (Exception e) {
-
         }
+        //创建文件流
+        OutputStream stream = new FileOutputStream(excelPath);
+        //写入数据
+        wb.write(stream);
+        //关闭文件流
+        stream.close();
+        logger.info("##\t写入完成，用时=" + (System.currentTimeMillis() - startTime) + "ms");
+    } catch(
+    Exception e)
+
+    {
+
     }
+
+}
 
     /**
      * <p>传入路径</p>
@@ -172,11 +176,19 @@ public class ExcelApi {
 
         for (int i = from - 1; i <= rowNum; i++) {
             Row row = (Row) sheet.getRow(i);
+            if (null == row) {
+                continue;
+            }
             Map<Integer, String> map = new HashMap<Integer, String>();
             int colNum = row.getPhysicalNumberOfCells();
             colNum = cols != null ? cols.length : colNum;
             for (int j = 0; j < colNum; j++) {
-                map.put(j, getCellFormatValue(row.getCell(cols != null ? cols[j] : j)).toString());
+                try {
+                    map.put(j, getCellFormatValue(row.getCell(cols != null ? cols[j] : j)).toString());
+                } catch (Exception e) {
+
+                    continue;
+                }
             }
             mapList.add(map);
         }

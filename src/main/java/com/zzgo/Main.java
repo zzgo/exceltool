@@ -24,8 +24,8 @@ public class Main {
         String time = sdf.format(new Date());
         ExcelUtils excelUtils = new ExcelUtils();
         ReadExcelBean read = new ReadExcelBean();
+        read.setFrom(82400);
         read.setSheetIndex(0);
-        read.setFrom(100);
         read.setSize(ConfigConstants.ROW_SIZE);
         read.setExcelPath(ConfigConstants.IN_PATH);
         read.setContainTitle(false);
@@ -43,52 +43,57 @@ public class Main {
         List<Map<Integer, String>> data = new ArrayList<Map<Integer, String>>();
         try {
             for (int i = 0; i < mapList.size(); i++) {
-                Map<Integer, String> mapAddress = mapList.get(i);
-                Map<Integer, String> map = new HashMap<Integer, String>();
-                List<String> list = new ArrayList<String>();
-                //在这里操作数据
-                String address = mapAddress.get(0);
-                System.out.println("第[\t" + i + "\t]\t地址=" + address);
-                String httpUrl = URLContants.DITUHUI_ONLINE_URL.replace("${address}", URLEncoder.encode(address +
-                        "", "utf-8"));
-                //String httpUrl = URLContants.GUAN_URL.replace("${address}", URLEncoder.encode(address +
-                //        "", "utf-8"));
-                String content = IOUtils.toString(new URL(httpUrl), "utf-8");
-                Common common = gson.fromJson(content, Common.class);
-                Result result = common.getResult();
-                //Address,Standard,Combine,ES-Combine,ES-Poi,ES-Address,Provice,City,County,Town,XY,ResultType
-                list.add(address);
-                if (result != null) {
-                    list.add(result.getStAddress());
-                    list.add(result.getCombine());
-                    list.add(result.getEsCombine());
-                    list.add(result.getPoi());
-                    list.add(result.getEsAddress());
-                    list.add(result.getProvince());
-                    list.add(result.getCity());
-                    list.add(result.getCounty());
-                    list.add(result.getTown());
-                    list.add(result.getX() + "," + result.getY());
-                    list.add(result.getResultType());
-                    for (int l = 0; l < list.size(); l++) {
-                        map.put(l, list.get(l));
+                try {
+                    Map<Integer, String> mapAddress = mapList.get(i);
+                    Map<Integer, String> map = new HashMap<Integer, String>();
+                    List<String> list = new ArrayList<String>();
+                    //在这里操作数据
+                    String address = mapAddress.get(0);
+                    System.out.println(i);
+                    String httpUrl = URLContants.DITUHUI_ONLINE_URL.replace("${address}", URLEncoder.encode(address +
+                            "", "utf-8"));
+                    //String httpUrl = URLContants.GUAN_URL.replace("${address}", URLEncoder.encode(address +
+                    //        "", "utf-8"));
+                    String content = IOUtils.toString(new URL(httpUrl), "utf-8");
+                    Common common = gson.fromJson(content, Common.class);
+                    Result result = common.getResult();
+                    //Address,Standard,Combine,ES-Combine,ES-Poi,ES-Address,Provice,City,County,Town,XY,ResultType
+                    list.add(address);
+                    if (result != null) {
+                        list.add(result.getStAddress());
+                        list.add(result.getCombine());
+                        list.add(result.getEsCombine());
+                        list.add(result.getPoi());
+                        list.add(result.getEsAddress());
+                        list.add(result.getProvince());
+                        list.add(result.getCity());
+                        list.add(result.getCounty());
+                        list.add(result.getTown());
+                        list.add(result.getX() + "," + result.getY());
+                        list.add(result.getResultType());
+                        for (int l = 0; l < list.size(); l++) {
+                            map.put(l, list.get(l));
+                        }
+                    } else {
+                        map.put(0, list.get(0));
+                        for (int l = 1; l < list.size(); l++) {
+                            map.put(l, "");
+                        }
                     }
-                } else {
-                    map.put(0, list.get(0));
-                    for (int l = 1; l < list.size(); l++) {
-                        map.put(l, "");
+                    data.add(map);
+                    list.clear();
+                    if (i > 0 && i % 5000 == 0) {
+                        write.setValues(data);
+                        excelUtils.write(write);
+                        data.clear();
                     }
-                }
-                data.add(map);
-                list.clear();
-                if (i > 0 && i % 5000 == 0) {
-                    write.setValues(data);
-                    excelUtils.write(write);
-                    data.clear();
+                } catch (Exception e) {
+                    continue;
                 }
             }
             write.setValues(data);
             excelUtils.write(write);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
